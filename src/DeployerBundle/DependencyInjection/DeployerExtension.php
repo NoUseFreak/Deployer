@@ -37,6 +37,7 @@ class DeployerExtension extends Extension
 		$config = $this->processConfiguration($configuration, $configs);
 
 		$container->setParameter('deployer.servers', $config['servers']);
+		$container->setParameter('deployer.farms', $config['farms']);
 
     }
 }

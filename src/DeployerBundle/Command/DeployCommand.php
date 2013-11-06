@@ -39,6 +39,6 @@ class DeployCommand extends ContainerAwareCommand
 
 		$queueItem = $queueRepo->findFirst();
 
-		var_dump($this->getContainer());
+		var_dump($this->getContainer()->getParameter('deployer.farms'));
 	}
 }

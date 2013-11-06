@@ -3,5 +3,10 @@ deployer:
     - id: test
       hostname: testHostname
       ip: bla
-
+    - id: test2
+      hostname: testHostname2
+      ip: 123.123.123.123
+  farms:
+    - name: testFarm
+      servers: [test]
 
