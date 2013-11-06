@@ -1,4 +1,4 @@
 deployer_web:
-    resource: "@DeployerWebBundle/Resources/config/routing.yml"
+    resource: "@DeployerBundle/Resources/config/routing.yml"
     prefix:   /
 

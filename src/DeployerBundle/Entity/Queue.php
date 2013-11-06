@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Deployer\WebBundle\Entity;
+namespace DeployerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Queue
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Deployer\WebBundle\Entity\QueueRepository")
+ * @ORM\Entity(repositoryClass="DeployerBundle\Entity\QueueRepository")
  *
  * @author Dries De Peuter <dries@nousefreak.be>
  */

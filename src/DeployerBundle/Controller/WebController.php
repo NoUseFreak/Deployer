@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Deployer\WebBundle\Controller;
+namespace DeployerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +28,7 @@ class WebController extends Controller
 	 */
 	public function indexAction()
 	{
-		$repo = $this->getDoctrine()->getRepository('DeployerWebBundle:Queue');
+		$repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
 
 		return array(
 			'firstQueue' => $repo->findFirst(),
@@ -42,7 +42,7 @@ class WebController extends Controller
 	 */
 	public function queueAction()
     {
-		$repo = $this->getDoctrine()->getRepository('DeployerWebBundle:Queue');
+		$repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
 
 		return array(
 			'queue' => $repo->getSortedQueue(),

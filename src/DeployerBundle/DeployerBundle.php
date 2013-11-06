@@ -8,13 +8,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Deployer\WebBundle;
+namespace DeployerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class DeployerWebBundle extends Bundle
+class DeployerBundle extends Bundle
 {
 }

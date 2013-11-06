@@ -1,0 +1,11 @@
+deployer_web_index:
+    pattern:  /
+    defaults: { _controller: DeployerBundle:Web:index }
+
+deployer_web_queue:
+    pattern:  /queue
+    defaults: { _controller: DeployerBundle:Web:queue }
+
+deployer_webhook_gitlab:
+    pattern:  /webhook/gitlab
+    defaults: { _controller: DeployerBundle:Webhook:gitlab }

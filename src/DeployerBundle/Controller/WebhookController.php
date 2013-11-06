@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Deployer\WebBundle\Controller;
+namespace DeployerBundle\Controller;
 
-use Deployer\WebBundle\Entity\Queue;
+use DeployerBundle\Entity\Queue;
 use Seld\JsonLint\JsonParser;
 use Seld\JsonLint\ParsingException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

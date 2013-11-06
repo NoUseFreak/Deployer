@@ -1,0 +1,7 @@
+deployer:
+  servers:
+    - id: test
+      hostname: testHostname
+      ip: bla
+
+
