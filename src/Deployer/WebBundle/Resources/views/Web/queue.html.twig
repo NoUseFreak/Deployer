@@ -1,0 +1,26 @@
+{% extends 'DeployerWebBundle::layout.html.twig' %}
+
+{% block title %}Deployer - Queue{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Project</th>
+            <th>Branch</th>
+            <th>Timestamp</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in queue %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.project }}</td>
+            <td>{{ item.branch }}</td>
+            <td>{{ item.createdAt|date }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
