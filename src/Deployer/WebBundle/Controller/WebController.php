@@ -31,9 +31,7 @@ class WebController extends Controller
 		$repo = $this->getDoctrine()->getRepository('DeployerWebBundle:Queue');
 
 		return array(
-			'queue' => $repo->findBy(array(), array(
-				'createdAt' => 'asc',
-			))
+			'queue' => $repo->getSortedQueue(),
 		);
     }
 }

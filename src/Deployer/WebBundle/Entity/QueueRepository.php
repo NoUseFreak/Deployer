@@ -22,4 +22,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class QueueRepository extends EntityRepository
 {
+	public function getSortedQueue()
+	{
+		return $this->findBy(array(), array(
+			'createdAt' => 'asc',
+		));
+	}
 }
