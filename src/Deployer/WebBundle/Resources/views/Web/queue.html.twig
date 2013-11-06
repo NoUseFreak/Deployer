@@ -8,26 +8,30 @@
         <div class="page-header">
             <h1>Queue <small>All queued deploys</small></h1>
         </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Project</th>
-                <th>Branch</th>
-                <th>Added</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in queue %}
+        {% if queue|length %}
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.project }}</td>
-                    <td>{{ item.branch }}</td>
-                    <td>{{ item.createdAt|date }}</td>
+                    <th>#</th>
+                    <th>Project</th>
+                    <th>Branch</th>
+                    <th>Added</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for item in queue %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.project }}</td>
+                        <td>{{ item.branch }}</td>
+                        <td>{{ item.createdAt|date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="lead">All done! No more items queued for deployment.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
