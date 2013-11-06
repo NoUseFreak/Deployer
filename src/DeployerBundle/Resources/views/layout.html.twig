@@ -28,8 +28,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{{ path('deployer_web_index') }}">Home</a></li>
-                    <li><a href="{{ path('deployer_web_queue') }}">Queue</a></li>
+                    <li{% if app.request.attributes.get('_route') == 'deployer_web_index' %} class="active"{% endif %}><a href="{{ path('deployer_web_index') }}">Home</a></li>
+                    <li{% if app.request.attributes.get('_route') == 'deployer_web_queue' %} class="active"{% endif %}><a href="{{ path('deployer_web_queue') }}">Queue</a></li>
                 </ul>
             </div>
         </div>
