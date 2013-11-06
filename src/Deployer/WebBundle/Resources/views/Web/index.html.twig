@@ -1,0 +1,31 @@
+{% extends 'DeployerWebBundle::layout.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <p class="lead">TODO: Write an intro text</p>
+
+            <h3>Usage</h3>
+            <p>TODO: Write usage description</p>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Next deploy
+                </div>
+                <table class="table">
+                    <tr>
+                        <th>repo</th>
+                        <td>{{ firstQueue.project }}</td>
+                    </tr>
+                    <tr>
+                        <th>branch</th>
+                        <td>{{ firstQueue.branch }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

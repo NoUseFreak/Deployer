@@ -1,3 +1,7 @@
+deployer_web_index:
+    pattern:  /
+    defaults: { _controller: DeployerWebBundle:Web:index }
+
 deployer_web_queue:
     pattern:  /queue
     defaults: { _controller: DeployerWebBundle:Web:queue }

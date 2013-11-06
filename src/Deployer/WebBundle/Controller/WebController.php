@@ -22,6 +22,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class WebController extends Controller
 {
 	/**
+	 * Display the homepage.
+	 *
+	 * @Template()
+	 */
+	public function indexAction()
+	{
+		$repo = $this->getDoctrine()->getRepository('DeployerWebBundle:Queue');
+
+		return array(
+			'firstQueue' => $repo->findFirst(),
+		);
+	}
+
+	/**
 	 * Display the items in the queue.
 	 *
 	 * @Template()
