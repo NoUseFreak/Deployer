@@ -9,6 +9,7 @@
  */
 namespace DeployerBundle\Command;
 
+use DeployerBundle\Util\DeployerFactory;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,8 +38,7 @@ class DeployCommand extends ContainerAwareCommand
 		$em = $this->getContainer()->get('doctrine')->getManager();
 		$queueRepo = $em->getRepository('DeployerBundle:Queue');
 
-		$queueItem = $queueRepo->findFirst();
-
-		var_dump($this->getContainer()->getParameter('deployer.farms'));
+		$deployer = DeployerFactory::factory($queueRepo->findFirst());
+		$deployer->deploy();
 	}
 }
