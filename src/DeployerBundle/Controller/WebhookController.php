@@ -31,7 +31,7 @@ class WebhookController extends Controller
             $parser = new JsonParser();
             $props = $parser->parse($payload);
         } catch (ParsingException $e) {
-            return new Response('Invalid gitlab payload.', 500);
+            return new Response('Invalid gitlab payload: ' . $e->getMessage(), 500);
         }
 
         $project = explode(':', $props->repository->url)[1];
