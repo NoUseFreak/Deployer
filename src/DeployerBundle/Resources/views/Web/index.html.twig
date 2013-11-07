@@ -15,16 +15,22 @@
                 <div class="panel-heading">
                     Next deploy
                 </div>
-                <table class="table">
-                    <tr>
-                        <th>repo</th>
-                        <td>{{ firstQueue.project }}</td>
-                    </tr>
-                    <tr>
-                        <th>branch</th>
-                        <td>{{ firstQueue.branch }}</td>
-                    </tr>
-                </table>
+                {% if firstQueue %}
+                    <table class="table">
+                        <tr>
+                            <th>repo</th>
+                            <td>{{ firstQueue.project }}</td>
+                        </tr>
+                        <tr>
+                            <th>branch</th>
+                            <td>{{ firstQueue.branch }}</td>
+                        </tr>
+                    </table>
+                {% else %}
+                    <div class="panel-body">
+                        <p>All done!</p>
+                    </div>
+                {% endif %}
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">
