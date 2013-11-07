@@ -25,33 +25,32 @@ class WebhookController extends Controller
 {
     public function gitlabAction()
     {
-		$payload = $this->getRequest()->getContent();
+        $payload = $this->getRequest()->getContent();
 
-		try {
-			$parser = new JsonParser();
-			$props = $parser->parse($payload);
-		}
-		catch (ParsingException $e) {
-			return new Response('Invalid gitlab payload.', 500);
-		}
+        try {
+            $parser = new JsonParser();
+            $props = $parser->parse($payload);
+        } catch (ParsingException $e) {
+            return new Response('Invalid gitlab payload.', 500);
+        }
 
-		$project = explode(':', $props->repository->url)[1];
-		$branch = explode('/', $props->ref)[2];
-		$this->createQueue($project, $branch, $payload);
+        $project = explode(':', $props->repository->url)[1];
+        $branch = explode('/', $props->ref)[2];
+        $this->createQueue($project, $branch, $payload);
 
-		return new Response('success');
+        return new Response('success');
     }
 
-	protected function createQueue($project, $branch, $payload)
-	{
-		$queue = new Queue();
-		$queue->setProject($project);
-		$queue->setBranch($branch);
-		$queue->setPayload($payload);
-		$queue->setCreatedAt(new \DateTime());
+    protected function createQueue($project, $branch, $payload)
+    {
+        $queue = new Queue();
+        $queue->setProject($project);
+        $queue->setBranch($branch);
+        $queue->setPayload($payload);
+        $queue->setCreatedAt(new \DateTime());
 
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($queue);
-		$em->flush();
-	}
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($queue);
+        $em->flush();
+    }
 }

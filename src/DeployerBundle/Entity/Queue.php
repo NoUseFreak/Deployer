@@ -59,11 +59,10 @@ class Queue
      */
     private $createdAt;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -73,20 +72,20 @@ class Queue
     /**
      * Set project
      *
-     * @param string $project
+     * @param  string $project
      * @return Queue
      */
     public function setProject($project)
     {
         $this->project = $project;
-    
+
         return $this;
     }
 
     /**
      * Get project
      *
-     * @return string 
+     * @return string
      */
     public function getProject()
     {
@@ -96,20 +95,20 @@ class Queue
     /**
      * Set branch
      *
-     * @param string $branch
+     * @param  string $branch
      * @return Queue
      */
     public function setBranch($branch)
     {
         $this->branch = $branch;
-    
+
         return $this;
     }
 
     /**
      * Get branch
      *
-     * @return string 
+     * @return string
      */
     public function getBranch()
     {
@@ -119,20 +118,20 @@ class Queue
     /**
      * Set payload
      *
-     * @param string $payload
+     * @param  string $payload
      * @return Queue
      */
     public function setPayload($payload)
     {
         $this->payload = $payload;
-    
+
         return $this;
     }
 
     /**
      * Get payload
      *
-     * @return string 
+     * @return string
      */
     public function getPayload()
     {
@@ -142,20 +141,20 @@ class Queue
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Queue
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
-    
+
         return $this;
     }
 
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {

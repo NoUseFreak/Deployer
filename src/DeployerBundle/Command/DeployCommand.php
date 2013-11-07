@@ -19,26 +19,26 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class DeployCommand extends ContainerAwareCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function configure()
-	{
-		$this
-			->setName('deployer:deploy')
-			->setDescription('Deploy the next item in the queue.')
-		;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function configure()
+    {
+        $this
+            ->setName('deployer:deploy')
+            ->setDescription('Deploy the next item in the queue.')
+        ;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$em = $this->getContainer()->get('doctrine')->getManager();
-		$queueRepo = $em->getRepository('DeployerBundle:Queue');
+    /**
+     * {@inheritdoc}
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $queueRepo = $em->getRepository('DeployerBundle:Queue');
 
-		$deployer = DeployerFactory::factory($queueRepo->findFirst());
-		$deployer->deploy();
-	}
+        $deployer = DeployerFactory::factory($queueRepo->findFirst());
+        $deployer->deploy();
+    }
 }

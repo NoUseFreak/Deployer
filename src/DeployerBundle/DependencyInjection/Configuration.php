@@ -28,41 +28,41 @@ class Configuration implements ConfigurationInterface
      *
      * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
      */
-	public function getConfigTreeBuilder()
-	{
-		$treeBuilder = new TreeBuilder();
-		$rootNode = $treeBuilder->root('deployer');
+    public function getConfigTreeBuilder()
+    {
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('deployer');
 
-		$rootNode
-			->children()
-				->arrayNode('servers')
-					->useAttributeAsKey('id')
-					->prototype('array')
-					->children()
-						->scalarNode('hostname')->cannotBeEmpty()->end()
-						->scalarNode('ip')->cannotBeEmpty()->end()
-					->end()
-				->end()->end()
-				->arrayNode('farms')
-					->useAttributeAsKey('name')
-					->prototype('array')
-					->children()
-						->arrayNode('servers')
-							->prototype('array')
-								->performNoDeepMerging()
-								->beforeNormalization()->ifString()->then(function($v) { return array('value' => $v); })->end()
-								->beforeNormalization()
-									->ifTrue(function($v) { return is_array($v) && isset($v['value']); })
-									->then(function($v) { return preg_split('/\s*,\s*/', $v['value']); })
-								->end()
-								->prototype('scalar')->end()
-							->end()
-						->end()
-					->end()
-				->end()->end()
-			->end()
-		;
+        $rootNode
+            ->children()
+                ->arrayNode('servers')
+                    ->useAttributeAsKey('id')
+                    ->prototype('array')
+                    ->children()
+                        ->scalarNode('hostname')->cannotBeEmpty()->end()
+                        ->scalarNode('ip')->cannotBeEmpty()->end()
+                    ->end()
+                ->end()->end()
+                ->arrayNode('farms')
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                    ->children()
+                        ->arrayNode('servers')
+                            ->prototype('array')
+                                ->performNoDeepMerging()
+                                ->beforeNormalization()->ifString()->then(function($v) { return array('value' => $v); })->end()
+                                ->beforeNormalization()
+                                    ->ifTrue(function($v) { return is_array($v) && isset($v['value']); })
+                                    ->then(function($v) { return preg_split('/\s*,\s*/', $v['value']); })
+                                ->end()
+                                ->prototype('scalar')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()->end()
+            ->end()
+        ;
 
-		return $treeBuilder;
-	}
+        return $treeBuilder;
+    }
 }

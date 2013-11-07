@@ -17,50 +17,50 @@ use DeployerBundle\Entity\Queue;
  */
 class DeployerFactory
 {
-	/**
-	 * @var \DeployerBundle\Entity\Queue
-	 */
-	protected $queue;
+    /**
+     * @var \DeployerBundle\Entity\Queue
+     */
+    protected $queue;
 
-	/**
-	 * @param Queue $queue
-	 */
-	public function __construct(Queue $queue)
-	{
-		$this->queue = $queue;
-	}
+    /**
+     * @param Queue $queue
+     */
+    public function __construct(Queue $queue)
+    {
+        $this->queue = $queue;
+    }
 
-	/**
-	 * Factory a Deployer instance.
-	 *
-	 * @param Queue $queue
-	 * @return Deployer
-	 */
-	public static function factory(Queue $queue)
-	{
-		$factory = new self($queue);
+    /**
+     * Factory a Deployer instance.
+     *
+     * @param  Queue    $queue
+     * @return Deployer
+     */
+    public static function factory(Queue $queue)
+    {
+        $factory = new self($queue);
 
-		return $factory->build();
-	}
+        return $factory->build();
+    }
 
-	/**
-	 * @return Deployer
-	 */
-	protected function build()
-	{
-		$deployer = new Deployer();
-		$deployer->setConfig($this->getConfig());
+    /**
+     * @return Deployer
+     */
+    protected function build()
+    {
+        $deployer = new Deployer();
+        $deployer->setConfig($this->getConfig());
 
-		return $deployer;
-	}
+        return $deployer;
+    }
 
-	/**
-	 * Build the configuration.
-	 *
-	 * @return DeployerConfig
-	 */
-	protected function getConfig()
-	{
-		return new DeployerConfig();
-	}
+    /**
+     * Build the configuration.
+     *
+     * @return DeployerConfig
+     */
+    protected function getConfig()
+    {
+        return new DeployerConfig();
+    }
 }

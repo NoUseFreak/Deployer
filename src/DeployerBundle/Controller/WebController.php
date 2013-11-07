@@ -11,7 +11,6 @@
 namespace DeployerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
@@ -21,31 +20,31 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class WebController extends Controller
 {
-	/**
-	 * Display the homepage.
-	 *
-	 * @Template()
-	 */
-	public function indexAction()
-	{
-		$repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
-
-		return array(
-			'firstQueue' => $repo->findFirst(),
-		);
-	}
-
-	/**
-	 * Display the items in the queue.
-	 *
-	 * @Template()
-	 */
-	public function queueAction()
+    /**
+     * Display the homepage.
+     *
+     * @Template()
+     */
+    public function indexAction()
     {
-		$repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
+        $repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
 
-		return array(
-			'queue' => $repo->getSortedQueue(),
-		);
+        return array(
+            'firstQueue' => $repo->findFirst(),
+        );
+    }
+
+    /**
+     * Display the items in the queue.
+     *
+     * @Template()
+     */
+    public function queueAction()
+    {
+        $repo = $this->getDoctrine()->getRepository('DeployerBundle:Queue');
+
+        return array(
+            'queue' => $repo->getSortedQueue(),
+        );
     }
 }

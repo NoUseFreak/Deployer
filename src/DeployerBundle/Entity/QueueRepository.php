@@ -22,17 +22,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class QueueRepository extends EntityRepository
 {
-	public function findFirst()
-	{
-		return $this->findOneBy(array(), array(
-			'createdAt' => 'asc',
-		));
-	}
+    public function findFirst()
+    {
+        return $this->findOneBy(array(), array(
+            'createdAt' => 'asc',
+        ));
+    }
 
-	public function getSortedQueue()
-	{
-		return $this->findBy(array(), array(
-			'createdAt' => 'asc',
-		));
-	}
+    public function getSortedQueue()
+    {
+        return $this->findBy(array(), array(
+            'createdAt' => 'asc',
+        ));
+    }
 }

@@ -13,7 +13,6 @@ namespace DeployerBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Exception\BadMethodCallException;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -29,15 +28,15 @@ class DeployerExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-		$loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-		$loader->load('services.yml');
-		$loader->load('deployer_hosts.yml');
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
+        $loader->load('deployer_hosts.yml');
 
-		$configuration = new Configuration();
-		$config = $this->processConfiguration($configuration, $configs);
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
 
-		$container->setParameter('deployer.servers', $config['servers']);
-		$container->setParameter('deployer.farms', $config['farms']);
+        $container->setParameter('deployer.servers', $config['servers']);
+        $container->setParameter('deployer.farms', $config['farms']);
 
     }
 }

@@ -14,24 +14,24 @@ namespace DeployerBundle\Util;
  */
 class Deployer
 {
-	/**
-	 * @var DeployerConfig
-	 */
-	protected $config;
+    /**
+     * @var DeployerConfig
+     */
+    protected $config;
 
-	/**
-	 * @param DeployerConfig $config
-	 */
-	public function setConfig(DeployerConfig $config)
-	{
-		$this->config = $config;
-	}
+    /**
+     * @param DeployerConfig $config
+     */
+    public function setConfig(DeployerConfig $config)
+    {
+        $this->config = $config;
+    }
 
-	/**
-	 * Deploy.
-	 */
-	public function deploy()
-	{
-		var_dump('Done');
-	}
+    /**
+     * Deploy.
+     */
+    public function deploy()
+    {
+        var_dump('Done');
+    }
 }
