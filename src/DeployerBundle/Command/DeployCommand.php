@@ -38,7 +38,7 @@ class DeployCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         $queueRepo = $em->getRepository('DeployerBundle:Queue');
 
-        $deployer = DeployerFactory::factory($queueRepo->findFirst());
+        $deployer = DeployerFactory::factory($queueRepo->findFirst(), $this->getContainer());
         $deployer->deploy();
     }
 }

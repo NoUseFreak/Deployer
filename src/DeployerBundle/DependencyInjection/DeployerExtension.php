@@ -37,6 +37,6 @@ class DeployerExtension extends Extension
 
         $container->setParameter('deployer.servers', $config['servers']);
         $container->setParameter('deployer.farms', $config['farms']);
-
+        $container->setParameter('deployer.projects', $config['projects']);
     }
 }
