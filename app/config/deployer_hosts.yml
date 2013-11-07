@@ -12,4 +12,11 @@ deployer:
   projects:
     - name: test/bla.git
       farm: testFarm
+      before_script:
+        - cd /var/www
+        - ls -la
+      after_script:
+        - df -h
+    - name: drupal/test.git
+      farm: testFarm
 
