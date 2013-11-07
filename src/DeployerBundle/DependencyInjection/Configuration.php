@@ -10,6 +10,7 @@
 
 namespace DeployerBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -33,36 +34,67 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('deployer');
 
-        $rootNode
-            ->children()
-                ->arrayNode('servers')
-                    ->useAttributeAsKey('id')
-                    ->prototype('array')
-                    ->children()
-                        ->scalarNode('hostname')->cannotBeEmpty()->end()
-                        ->scalarNode('ip')->cannotBeEmpty()->end()
-                    ->end()
-                ->end()->end()
-                ->arrayNode('farms')
-                    ->useAttributeAsKey('name')
-                    ->prototype('array')
-                    ->children()
-                        ->arrayNode('servers')
-                            ->prototype('array')
-                                ->performNoDeepMerging()
-                                ->beforeNormalization()->ifString()->then(function($v) { return array('value' => $v); })->end()
-                                ->beforeNormalization()
-                                    ->ifTrue(function($v) { return is_array($v) && isset($v['value']); })
-                                    ->then(function($v) { return preg_split('/\s*,\s*/', $v['value']); })
-                                ->end()
-                                ->prototype('scalar')->end()
-                            ->end()
-                        ->end()
-                    ->end()
-                ->end()->end()
-            ->end()
-        ;
+		$this->addServerSection($rootNode);
+		$this->addFarmSection($rootNode);
+		$this->addProjectSection($rootNode);
 
         return $treeBuilder;
     }
+
+	protected function addServerSection(ArrayNodeDefinition $rootNode)
+	{
+		$rootNode
+			->children()
+				->arrayNode('servers')
+				->useAttributeAsKey('id')
+				->prototype('array')
+					->children()
+						->scalarNode('hostname')->cannotBeEmpty()->end()
+						->scalarNode('ip')->cannotBeEmpty()->end()
+					->end()
+				->end()
+			->end()
+		;
+	}
+
+	protected function addFarmSection(ArrayNodeDefinition $rootNode)
+	{
+		$rootNode
+			->children()
+				->arrayNode('farms')
+					->useAttributeAsKey('name')
+					->prototype('array')
+					->children()
+						->arrayNode('servers')
+						->prototype('array')
+							->performNoDeepMerging()
+							->beforeNormalization()->ifString()->then(function($v) { return array('value' => $v); })->end()
+							->beforeNormalization()
+							->ifTrue(function($v) { return is_array($v) && isset($v['value']); })
+							->then(function($v) { return preg_split('/\s*,\s*/', $v['value']); })
+							->end()
+							->prototype('scalar')->end()
+						->end()
+					->end()
+				->end()
+			->end()
+		;
+	}
+
+	protected function addProjectSection(ArrayNodeDefinition $rootNode)
+	{
+		$rootNode
+			->children()
+				->arrayNode('projects')
+					->useAttributeAsKey('name')
+					->prototype('array')
+					->children()
+						->scalarNode('name')->cannotBeEmpty()->end()
+						->scalarNode('farm')->cannotBeEmpty()->end()
+					->end()
+				->end()
+			->end()
+		;
+	}
+
 }

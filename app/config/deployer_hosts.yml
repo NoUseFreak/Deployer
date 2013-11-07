@@ -9,4 +9,7 @@ deployer:
   farms:
     - name: testFarm
       servers: [test]
+  projects:
+    - name: test/bla.git
+      farm: testFarm
 
