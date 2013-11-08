@@ -19,6 +19,11 @@ class Deployer
      */
     protected $config;
 
+	/**
+	 * @var Executor
+	 */
+	protected $executor;
+
     /**
      * @param DeployerConfig $config
      */
@@ -32,6 +37,8 @@ class Deployer
      */
     public function deploy()
     {
+		$this->init();
+
 		$this->doPreScripts();
 		$this->doCheckout();
 		$this->doPostScripts();
@@ -43,12 +50,19 @@ class Deployer
         var_dump('Done');
     }
 
+	protected function init()
+	{
+		$this->executor = new Executor();
+	}
+
 	/**
 	 * Execute pre checkout scripts.
 	 */
 	protected function doPreScripts()
 	{
-
+		foreach ($this->config->getPreCheckoutTasks() as $task) {
+			$this->executor->execLocal($task);
+		}
 	}
 
 	/**
@@ -64,34 +78,15 @@ class Deployer
 	 */
 	protected function doPostScripts()
 	{
-
+		foreach ($this->config->getPostCheckoutTasks() as $task) {
+			$this->executor->execLocal($task);
+		}
 	}
 
 	/**
 	 * @param Server $server
 	 */
 	protected function doServerDeploy(Server $server)
-	{
-
-	}
-
-	/**
-	 * Execute a command on the local server.
-	 *
-	 * @param Command $command
-	 */
-	protected function execLocal(Command $command)
-	{
-
-	}
-
-	/**
-	 * Execute a command on the remote server.
-	 *
-	 * @param Command $command
-	 * @param Server $server
-	 */
-	protected function execRemote(Command $command, Server $server)
 	{
 
 	}

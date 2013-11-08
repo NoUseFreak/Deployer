@@ -12,6 +12,26 @@ namespace DeployerBundle\Util;
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class Command
+class Executor
 {
+	/**
+	 * Execute a command on the local server.
+	 *
+	 * @param Task $task
+	 */
+	public function execLocal(Task $task)
+	{
+
+	}
+
+	/**
+	 * Execute a command on the remote server.
+	 *
+	 * @param Server $server
+	 * @param Task $task
+	 */
+	public function execRemote(Server $server, Task $task)
+	{
+
+	}
 }
