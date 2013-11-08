@@ -32,6 +32,67 @@ class Deployer
      */
     public function deploy()
     {
+		$this->doPreScripts();
+		$this->doCheckout();
+		$this->doPostScripts();
+
+		foreach ($this->config->getServers() as $server) {
+			$this->doServerDeploy($server);
+		}
+
         var_dump('Done');
     }
+
+	/**
+	 * Execute pre checkout scripts.
+	 */
+	protected function doPreScripts()
+	{
+
+	}
+
+	/**
+	 * Checkout/update the local code.
+	 */
+	protected function doCheckout()
+	{
+
+	}
+
+	/**
+	 * Execute post checkout scripts.
+	 */
+	protected function doPostScripts()
+	{
+
+	}
+
+	/**
+	 * @param Server $server
+	 */
+	protected function doServerDeploy(Server $server)
+	{
+
+	}
+
+	/**
+	 * Execute a command on the local server.
+	 *
+	 * @param Command $command
+	 */
+	protected function execLocal(Command $command)
+	{
+
+	}
+
+	/**
+	 * Execute a command on the remote server.
+	 *
+	 * @param Command $command
+	 * @param Server $server
+	 */
+	protected function execRemote(Command $command, Server $server)
+	{
+
+	}
 }
