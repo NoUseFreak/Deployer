@@ -19,10 +19,10 @@ class Deployer
      */
     protected $config;
 
-	/**
-	 * @var Executor
-	 */
-	protected $executor;
+    /**
+     * @var Executor
+     */
+    protected $executor;
 
     /**
      * @param DeployerConfig $config
@@ -37,57 +37,57 @@ class Deployer
      */
     public function deploy()
     {
-		$this->init();
+        $this->init();
 
-		$this->doPreScripts();
-		$this->doCheckout();
-		$this->doPostScripts();
+        $this->doPreScripts();
+        $this->doCheckout();
+        $this->doPostScripts();
 
-		foreach ($this->config->getServers() as $server) {
-			$this->doServerDeploy($server);
-		}
+        foreach ($this->config->getServers() as $server) {
+            $this->doServerDeploy($server);
+        }
 
         var_dump('Done');
     }
 
-	protected function init()
-	{
-		$this->executor = new Executor();
-	}
+    protected function init()
+    {
+        $this->executor = new Executor();
+    }
 
-	/**
-	 * Execute pre checkout scripts.
-	 */
-	protected function doPreScripts()
-	{
-		foreach ($this->config->getPreCheckoutTasks() as $task) {
-			$this->executor->execLocal($task);
-		}
-	}
+    /**
+     * Execute pre checkout scripts.
+     */
+    protected function doPreScripts()
+    {
+        foreach ($this->config->getPreCheckoutTasks() as $task) {
+            $this->executor->execLocal($task);
+        }
+    }
 
-	/**
-	 * Checkout/update the local code.
-	 */
-	protected function doCheckout()
-	{
+    /**
+     * Checkout/update the local code.
+     */
+    protected function doCheckout()
+    {
 
-	}
+    }
 
-	/**
-	 * Execute post checkout scripts.
-	 */
-	protected function doPostScripts()
-	{
-		foreach ($this->config->getPostCheckoutTasks() as $task) {
-			$this->executor->execLocal($task);
-		}
-	}
+    /**
+     * Execute post checkout scripts.
+     */
+    protected function doPostScripts()
+    {
+        foreach ($this->config->getPostCheckoutTasks() as $task) {
+            $this->executor->execLocal($task);
+        }
+    }
 
-	/**
-	 * @param Server $server
-	 */
-	protected function doServerDeploy(Server $server)
-	{
+    /**
+     * @param Server $server
+     */
+    protected function doServerDeploy(Server $server)
+    {
 
-	}
+    }
 }

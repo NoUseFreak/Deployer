@@ -24,10 +24,10 @@ class DeployerConfig
      */
     protected $preCheckoutTasks = array();
 
-	/**
-	 * @var Task[]
-	 */
-	protected $postCheckoutTasks = array();
+    /**
+     * @var Task[]
+     */
+    protected $postCheckoutTasks = array();
 
     /**
      * @param Server[] $servers
@@ -45,35 +45,35 @@ class DeployerConfig
         return $this->servers;
     }
 
-	/**
-	 * @param Task[] $postCheckoutTasks
-	 */
-	public function setPostCheckoutTasks($postCheckoutTasks)
-	{
-		$this->postCheckoutTasks = $postCheckoutTasks;
-	}
+    /**
+     * @param Task[] $postCheckoutTasks
+     */
+    public function setPostCheckoutTasks($postCheckoutTasks)
+    {
+        $this->postCheckoutTasks = $postCheckoutTasks;
+    }
 
-	/**
-	 * @return Task[]
-	 */
-	public function getPostCheckoutTasks()
-	{
-		return $this->postCheckoutTasks;
-	}
+    /**
+     * @return Task[]
+     */
+    public function getPostCheckoutTasks()
+    {
+        return $this->postCheckoutTasks;
+    }
 
-	/**
-	 * @param Task[] $preCheckoutTasks
-	 */
-	public function setPreCheckoutTasks($preCheckoutTasks)
-	{
-		$this->preCheckoutTasks = $preCheckoutTasks;
-	}
+    /**
+     * @param Task[] $preCheckoutTasks
+     */
+    public function setPreCheckoutTasks($preCheckoutTasks)
+    {
+        $this->preCheckoutTasks = $preCheckoutTasks;
+    }
 
-	/**
-	 * @return Task[]
-	 */
-	public function getPreCheckoutTasks()
-	{
-		return $this->preCheckoutTasks;
-	}
+    /**
+     * @return Task[]
+     */
+    public function getPreCheckoutTasks()
+    {
+        return $this->preCheckoutTasks;
+    }
 }
