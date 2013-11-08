@@ -9,13 +9,18 @@
  */
 namespace DeployerBundle\Util;
 
+use DeployerBundle\Util\Config\Config;
+use DeployerBundle\Util\Executor\Executor;
+use DeployerBundle\Util\Server\Server;
+use DeployerBundle\Util\Server\ServerInterface;
+
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
 class Deployer
 {
     /**
-     * @var DeployerConfig
+     * @var Config
      */
     protected $config;
 
@@ -25,9 +30,9 @@ class Deployer
     protected $executor;
 
     /**
-     * @param DeployerConfig $config
+     * @param Config $config
      */
-    public function setConfig(DeployerConfig $config)
+    public function setConfig(Config $config)
     {
         $this->config = $config;
     }
@@ -84,9 +89,9 @@ class Deployer
     }
 
     /**
-     * @param Server $server
+     * @param ServerInterface $server
      */
-    protected function doServerDeploy(Server $server)
+    protected function doServerDeploy(ServerInterface $server)
     {
 
     }

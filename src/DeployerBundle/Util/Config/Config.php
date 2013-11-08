@@ -7,30 +7,33 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace DeployerBundle\Util;
+namespace DeployerBundle\Util\Config;
+
+use DeployerBundle\Util\Server\ServerInterface;
+use DeployerBundle\Util\Task\TaskInterface;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class DeployerConfig
+class Config
 {
     /**
-     * @var Server[]
+     * @var ServerInterface[]
      */
     protected $servers = array();
 
     /**
-     * @var Task[]
+     * @var TaskInterface[]
      */
     protected $preCheckoutTasks = array();
 
     /**
-     * @var Task[]
+     * @var TaskInterface[]
      */
     protected $postCheckoutTasks = array();
 
     /**
-     * @param Server[] $servers
+     * @param ServerInterface[] $servers
      */
     public function setServers($servers)
     {
@@ -38,7 +41,7 @@ class DeployerConfig
     }
 
     /**
-     * @return Server[]
+     * @return ServerInterface[]
      */
     public function getServers()
     {
@@ -46,7 +49,7 @@ class DeployerConfig
     }
 
     /**
-     * @param Task[] $postCheckoutTasks
+     * @param TaskInterface[] $postCheckoutTasks
      */
     public function setPostCheckoutTasks($postCheckoutTasks)
     {
@@ -54,7 +57,7 @@ class DeployerConfig
     }
 
     /**
-     * @return Task[]
+     * @return TaskInterface[]
      */
     public function getPostCheckoutTasks()
     {
@@ -62,7 +65,7 @@ class DeployerConfig
     }
 
     /**
-     * @param Task[] $preCheckoutTasks
+     * @param TaskInterface[] $preCheckoutTasks
      */
     public function setPreCheckoutTasks($preCheckoutTasks)
     {
@@ -70,7 +73,7 @@ class DeployerConfig
     }
 
     /**
-     * @return Task[]
+     * @return TaskInterface[]
      */
     public function getPreCheckoutTasks()
     {

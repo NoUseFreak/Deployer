@@ -7,19 +7,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace DeployerBundle\Util;
+namespace DeployerBundle\Util\Executor;
+
+use DeployerBundle\Util\Server\ServerInterface;
+use DeployerBundle\Util\Task\TaskInterface;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class Executor
+class Executor implements ExecutorInterface
 {
     /**
      * Execute a command on the local server.
      *
-     * @param Task $task
+     * @param TaskInterface $task
      */
-    public function execLocal(Task $task)
+    public function execLocal(TaskInterface $task)
     {
 
     }
@@ -27,10 +30,10 @@ class Executor
     /**
      * Execute a command on the remote server.
      *
-     * @param Server $server
-     * @param Task   $task
+     * @param ServerInterface $server
+     * @param TaskInterface   $task
      */
-    public function execRemote(Server $server, Task $task)
+    public function execRemote(ServerInterface $server, TaskInterface $task)
     {
 
     }

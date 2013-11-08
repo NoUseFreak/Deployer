@@ -7,11 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace DeployerBundle\Util;
+namespace DeployerBundle\Util\Executor;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
  */
-class Task
+interface ExecutorInterface
 {
 }

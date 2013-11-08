@@ -10,6 +10,7 @@
 namespace DeployerBundle\Util;
 
 use DeployerBundle\Entity\Queue;
+use DeployerBundle\Util\Config\Config;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -62,11 +63,11 @@ class DeployerFactory
      * Build the configuration.
      *
      * @param  ContainerInterface $container
-     * @return DeployerConfig
+     * @return Config
      */
     protected function getConfig(ContainerInterface $container)
     {
-        $config = new DeployerConfig();
+        $config = new Config();
         $project = $this->findProject($container->getParameter('deployer.projects'));
 
         //TODO find servers for the project and put them in the config.
