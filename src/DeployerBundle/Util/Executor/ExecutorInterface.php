@@ -17,18 +17,18 @@ use DeployerBundle\Util\Task\TaskInterface;
  */
 interface ExecutorInterface
 {
-	/**
-	 * Execute a command on the local server.
-	 *
-	 * @param TaskInterface $task
-	 */
-	public function execLocal(TaskInterface $task);
+    /**
+     * Execute a command on the local server.
+     *
+     * @param TaskInterface $task
+     */
+    public function execLocal(TaskInterface $task);
 
-	/**
-	 * Execute a command on the remote server.
-	 *
-	 * @param ServerInterface $server
-	 * @param TaskInterface   $task
-	 */
-	public function execRemote(ServerInterface $server, TaskInterface $task);
+    /**
+     * Execute a command on the remote server.
+     *
+     * @param ServerInterface $server
+     * @param TaskInterface   $task
+     */
+    public function execRemote(ServerInterface $server, TaskInterface $task);
 }
