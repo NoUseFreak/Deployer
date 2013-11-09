@@ -11,8 +11,8 @@ namespace DeployerBundle\Util;
 
 use DeployerBundle\Util\Config\Config;
 use DeployerBundle\Util\Executor\Executor;
-use DeployerBundle\Util\Server\Server;
 use DeployerBundle\Util\Server\ServerInterface;
+use DeployerBundle\Util\Task\Task;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
@@ -93,6 +93,22 @@ class Deployer
      */
     protected function doServerDeploy(ServerInterface $server)
     {
+        $rsyncCommand = sprintf('rsync -avz %s %s', $this->getCheckoutPath(), $this->getTargetPath($server));
+        $this->executor->execLocal(new Task($rsyncCommand));
+    }
 
+    /**
+     * Get the path where the project will be build locally.
+     *
+     * @return string
+     */
+    protected function getCheckoutPath()
+    {
+        return '/tmp/checkouts';
+    }
+
+    protected function getTargetPath(ServerInterface $server)
+    {
+        return 'ssh ' . $server->getAlias() . ':' . $this->config->getTargetPath();
     }
 }

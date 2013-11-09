@@ -14,4 +14,8 @@ namespace DeployerBundle\Util\Task;
  */
 interface TaskInterface
 {
+    /**
+     * @return string
+     */
+    public function getCommand();
 }

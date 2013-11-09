@@ -14,4 +14,14 @@ namespace DeployerBundle\Util\Server;
  */
 class Server implements ServerInterface
 {
+    /**
+     * Get the alias to connect to the server using ssh.
+     * This should be the name as configured in the ~/.ssh/config
+     *
+     * @return string
+     */
+    public function getAlias()
+    {
+        return 'test';
+    }
 }

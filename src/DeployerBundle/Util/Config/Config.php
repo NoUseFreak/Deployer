@@ -23,6 +23,11 @@ class Config
     protected $servers = array();
 
     /**
+     * @var string
+     */
+    protected $targetPath;
+
+    /**
      * @var TaskInterface[]
      */
     protected $preCheckoutTasks = array();
@@ -46,6 +51,22 @@ class Config
     public function getServers()
     {
         return $this->servers;
+    }
+
+    /**
+     * @param string $targetPath
+     */
+    public function setTargetPath($targetPath)
+    {
+        $this->targetPath = $targetPath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetPath()
+    {
+        return $this->targetPath;
     }
 
     /**

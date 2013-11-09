@@ -14,4 +14,21 @@ namespace DeployerBundle\Util\Task;
  */
 class Task implements TaskInterface
 {
+    protected $command;
+
+    /**
+     * @param string $command
+     */
+    public function setCommand($command)
+    {
+        $this->command = $command;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommand()
+    {
+        return $this->command;
+    }
 }
