@@ -14,6 +14,9 @@ namespace DeployerBundle\Util\Task;
  */
 class Task implements TaskInterface
 {
+    /**
+     * @var string
+     */
     protected $command;
 
     /**
