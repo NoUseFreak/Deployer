@@ -11,6 +11,7 @@ namespace DeployerBundle\Util\Executor;
 
 use DeployerBundle\Util\Server\ServerInterface;
 use DeployerBundle\Util\Task\TaskInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * @author Dries De Peuter <dries@nousefreak.be>
@@ -24,7 +25,8 @@ class Executor implements ExecutorInterface
      */
     public function execLocal(TaskInterface $task)
     {
-        // TODO: Implement execLocal() method.
+		$process = new Process($task->getCommand());
+		$process->run();
     }
 
     /**
@@ -35,6 +37,8 @@ class Executor implements ExecutorInterface
      */
     public function execRemote(ServerInterface $server, TaskInterface $task)
     {
-        // TODO: Implement execRemote() method.
+		$command = sprintf('ssh %s %s', $server->getAlias(), $task->getCommand());
+		$process = new Process($command);
+		$process->run();
     }
 }
