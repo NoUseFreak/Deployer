@@ -15,6 +15,20 @@ namespace DeployerBundle\Util\Server;
 class Server implements ServerInterface
 {
     /**
+     * @var
+     */
+    protected $alias;
+
+    /**
+     * @param $alias
+     * @param array $record
+     */
+    public function __construct($alias, array $record)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
      * Get the alias to connect to the server using ssh.
      * This should be the name as configured in the ~/.ssh/config
      *
@@ -22,6 +36,14 @@ class Server implements ServerInterface
      */
     public function getAlias()
     {
-        return 'test';
+        return $this->alias;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getAlias();
     }
 }

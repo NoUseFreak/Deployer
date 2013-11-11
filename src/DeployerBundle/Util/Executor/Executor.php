@@ -25,8 +25,12 @@ class Executor implements ExecutorInterface
      */
     public function execLocal(TaskInterface $task)
     {
+        $this->output($task->getCommand());
+
         $process = new Process($task->getCommand());
-        $process->run();
+        $process->run(function($type, $buffer) {
+            $this->output($buffer);
+        });
     }
 
     /**
@@ -38,7 +42,19 @@ class Executor implements ExecutorInterface
     public function execRemote(ServerInterface $server, TaskInterface $task)
     {
         $command = sprintf('ssh %s %s', $server->getAlias(), $task->getCommand());
+        $this->output($command);
+
         $process = new Process($command);
-        $process->run();
+        $process->run(function($type, $buffer) {
+            $this->output($buffer);
+        });
+    }
+
+    /**
+     * @param $string
+     */
+    protected function output($string)
+    {
+        echo $string . PHP_EOL;
     }
 }

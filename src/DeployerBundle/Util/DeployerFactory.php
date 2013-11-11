@@ -11,6 +11,7 @@ namespace DeployerBundle\Util;
 
 use DeployerBundle\Entity\Queue;
 use DeployerBundle\Util\Config\Config;
+use DeployerBundle\Util\Server\Server;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -69,8 +70,15 @@ class DeployerFactory
     {
         $config = new Config();
         $project = $this->findProject($container->getParameter('deployer.projects'));
+        $servers = $this->findServers(
+            $project['farm'],
+            $container->getParameter('deployer.farms'),
+            $container->getParameter('deployer.servers')
+        );
+        $config->setServers($servers);
 
-        //TODO find servers for the project and put them in the config.
+        $config->setTargetPath($project['path']);
+
         return $config;
     }
 
@@ -85,5 +93,30 @@ class DeployerFactory
         }
 
         return null;
+    }
+
+    /**
+     * @param  string $farm
+     * @param  array  $farms
+     * @param  array  $oServers
+     * @return array
+     */
+    protected function findServers($farm, $farms, $oServers)
+    {
+        $servers = array();
+
+        if (array_key_exists($farm, $farms)) {
+            $serverNames = array_map(function($item) {
+                return $item[0];
+            }, $farms[$farm]['servers']);
+
+            foreach ($oServers as $name => $server) {
+                if (in_array($name, $serverNames)) {
+                    $servers[] = new Server($name, $server);
+                }
+            }
+        }
+
+        return $servers;
     }
 }

@@ -8,10 +8,11 @@ deployer:
       ip: 123.123.123.123
   farms:
     - name: testFarm
-      servers: [test]
+      servers: [test, test2]
   projects:
     - name: test/bla.git
       farm: testFarm
+      path: /var/www/project
       before_script:
         - cd /var/www
         - ls -la
@@ -19,4 +20,5 @@ deployer:
         - df -h
     - name: drupal/test.git
       farm: testFarm
+      path: /var/www/project
 

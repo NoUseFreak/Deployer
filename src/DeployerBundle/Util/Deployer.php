@@ -44,6 +44,8 @@ class Deployer
     {
         $this->init();
 
+        $this->output(sprintf('Deploying  to [%s]', implode(', ', $this->config->getServers())));
+
         $this->doPreScripts();
         $this->doCheckout();
         $this->doPostScripts();
@@ -52,7 +54,7 @@ class Deployer
             $this->doServerDeploy($server);
         }
 
-        var_dump('Done');
+        $this->output('Done');
     }
 
     protected function init()
@@ -107,8 +109,22 @@ class Deployer
         return '/tmp/checkouts';
     }
 
+    /**
+     * Return the target path on the server.
+     *
+     * @param  ServerInterface $server
+     * @return string
+     */
     protected function getTargetPath(ServerInterface $server)
     {
-        return 'ssh ' . $server->getAlias() . ':' . $this->config->getTargetPath();
+        return sprintf('%s:%s', $server->getAlias(), $this->config->getTargetPath());
+    }
+
+    /**
+     * @param $string
+     */
+    protected function output($string)
+    {
+        echo $string . PHP_EOL;
     }
 }

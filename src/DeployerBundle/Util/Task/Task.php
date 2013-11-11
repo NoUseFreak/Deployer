@@ -22,6 +22,13 @@ class Task implements TaskInterface
     /**
      * @param string $command
      */
+    public function __construct($command = null)
+    {
+        $this->command = $command;
+    }
+    /**
+     * @param string $command
+     */
     public function setCommand($command)
     {
         $this->command = $command;

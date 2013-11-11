@@ -94,6 +94,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('name')->cannotBeEmpty()->end()
                         ->scalarNode('farm')->cannotBeEmpty()->end()
+                        ->scalarNode('path')->cannotBeEmpty()->end()
                         ->arrayNode('before_script')
                             ->prototype('array')
                                 ->performNoDeepMerging()
